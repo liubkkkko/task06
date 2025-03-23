@@ -20,24 +20,24 @@ resource "azurerm_key_vault_secret" "sql_admin_password" {
 }
 
 resource "azurerm_mssql_server" "main" {
-  name                         = var.sql_server_name
-  resource_group_name          = var.resource_group_name
-  location                     = var.location
-  version                      = "12.0"
-  administrator_login          = var.sql_admin_username
-  administrator_login_password = random_password.sql_admin_password.result
-  minimum_tls_version          = "1.2"
+  name                          = var.sql_server_name
+  resource_group_name           = var.resource_group_name
+  location                      = var.location
+  version                       = "12.0"
+  administrator_login           = var.sql_admin_username
+  administrator_login_password  = random_password.sql_admin_password.result
+  minimum_tls_version           = "1.2"
   public_network_access_enabled = true
-  
+
   # Add this if you're still having issues
   connection_policy = "Default"
-  
+
   tags = var.tags
-  
+
   identity {
     type = "SystemAssigned"
   }
-  
+
   # Add timeouts for slower operations
   timeouts {
     create = "60m"
