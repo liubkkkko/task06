@@ -29,9 +29,9 @@ variable "dotnet_version" {
 }
 
 variable "sql_connection_string" {
+  sensitive   = true
   description = "Connection string to the SQL database"
   type        = string
-  sensitive   = true
 }
 
 variable "tags" {
